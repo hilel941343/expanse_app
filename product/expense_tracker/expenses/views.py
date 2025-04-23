@@ -1,10 +1,9 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 
 
 def home(request):
-    return HttpResponse("Home page is working!")
+    return render(request, 'home.html')
 
 
 # Create your views here.
