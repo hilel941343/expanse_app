@@ -16,12 +16,21 @@ body.custom-home {
     color: white;
 }
 .container {
-    background-color: rgba(255, 255, 255, 0.7); /* soft light background */
-    padding: 2rem;
-    border-radius: 10px;
-    backdrop-filter: blur(8px); /* modern glass effect */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* gentle shadow */
-    color: #333; /* darker text for contrast on light background */
+  background: rgba(255, 255, 255, 0.15); /* softer translucent background */
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  backdrop-filter: blur(14px); /* smoother blur for frosted glass */
+  -webkit-backdrop-filter: blur(14px); /* Safari support */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); /* deeper, modern shadow */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* subtle inner glow effect */
+  color: #2c2c2c;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Optional hover effect for interactive feeling */
+.container:hover {
+  transform: scale(1.01);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
 }
 
 </style>
@@ -29,13 +38,33 @@ body.custom-home {
 
 {% block content %}
 <div class="container text-center mt-5">
-    {% if user.is_authenticated %}
-        <h2>Welcome back, {{ user.username }}!</h2>
-        <p>Track your daily expenses and stay in control of your finances.</p>
-    {% else %}
-        <h2>Welcome to Expense Tracker</h2>
-        <p>Please <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a> to start tracking your expenses.</p>
-    {% endif %}
+  {% if user.is_authenticated %}
+    <h2 class="display-4 fw-bold mb-3" style="
+      background: linear-gradient(90deg, #8b4513, #d2691e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    ">
+      Welcome back, {{ user.username }}!
+    </h2>
+    <p class="fs-5" style="color: #4b2e19;">Track your daily expenses and stay in control of your <span style="color: #b45f06;">finances</span>.</p>
+  {% else %}
+    <h2 class="display-4 fw-bold mb-3" style="
+      background: linear-gradient(90deg, #7b341e, #e07b39);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    ">
+      Welcome to Expense Tracker
+    </h2>
+    <p class="fs-5" style="color: #3a1f0d;">
+      Please
+      <a href="{% url 'login' %}" style="color: #d2691e; text-decoration: none; font-weight: 600;">login</a>
+      or
+      <a href="{% url 'register' %}" style="color: #a0522d; text-decoration: none; font-weight: 600;">register</a>
+      to start tracking your expenses.
+    </p>
+  {% endif %}
 </div>
 {% endblock %}
+
+
 
