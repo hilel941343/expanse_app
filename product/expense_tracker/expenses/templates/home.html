@@ -1,12 +1,41 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Home - Expenses Tracker{% endblock %}
+
+{% block body_class %}custom-home{% endblock %}
+
+{% block extra_css %}
+<style>
+body.custom-home {
+    background-image: url("{% static 'images/home_page.jpg' %}");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    color: white;
+}
+.container {
+    background-color: rgba(255, 255, 255, 0.7); /* soft light background */
+    padding: 2rem;
+    border-radius: 10px;
+    backdrop-filter: blur(8px); /* modern glass effect */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* gentle shadow */
+    color: #333; /* darker text for contrast on light background */
+}
+
+</style>
+{% endblock %}
 
 {% block content %}
-<h1>Welcome to the Home Page</h1>
-{% if user.is_authenticated %}
-<p>You are logged in as {{ user.username }}.</p>
-{% else %}
-<p>You are not logged in.</p>
-{% endif %}
+<div class="container text-center mt-5">
+    {% if user.is_authenticated %}
+        <h2>Welcome back, {{ user.username }}!</h2>
+        <p>Track your daily expenses and stay in control of your finances.</p>
+    {% else %}
+        <h2>Welcome to Expense Tracker</h2>
+        <p>Please <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a> to start tracking your expenses.</p>
+    {% endif %}
+</div>
 {% endblock %}
+
