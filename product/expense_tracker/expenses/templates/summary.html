@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Expense Summary{% endblock %}
+
+{% block content %}
+<div class="container mt-5 text-white">
+    <h2 class="mb-4">Your Expense Summary</h2>
+
+    <div class="row">
+        {% for summary in summaries %}
+        <div class="col-md-4 mb-4">
+            <div class="card bg-dark shadow-lg text-white h-100">
+                <div class="card-header text-center fs-4">{{ summary.period }}</div>
+                <div class="card-body">
+                    <h5>Total: <strong>${{ summary.total|floatformat:2 }}</strong></h5>
+                    <ul class="list-group list-group-flush mt-3">
+                        {% for item in summary.breakdown %}
+                        <li class="list-group-item bg-transparent text-white d-flex justify-content-between">
+                            <span>{{ item.category }}</span>
+                            <span>${{ item.total|floatformat:2 }}</span>
+                        </li>
+                        {% empty %}
+                        <li class="list-group-item bg-transparent text-white">No data</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

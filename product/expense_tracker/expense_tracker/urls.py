@@ -8,6 +8,7 @@ from expenses import views as expenses_views
 # ✅ this line was missing!
 
 urlpatterns = [
+    path('expenses/', include('expenses.urls')),
     path('admin/', admin.site.urls),
     path('', include('expenses.urls')),  # app urls (home & other views inside app)
     path('accounts/', include('django.contrib.auth.urls')),  # default auth views
