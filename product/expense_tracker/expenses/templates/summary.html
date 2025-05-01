@@ -1,26 +1,80 @@
 {% extends 'base.html' %}
-
 {% block title %}Expense Summary{% endblock %}
-
 {% block content %}
+<style>
+    .glass-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .glass-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 30px rgba(0, 255, 195, 0.3);
+    }
+
+    .glass-header {
+        background: linear-gradient(135deg, #00ffc3, #00cfa1);
+        border-radius: 20px 20px 0 0;
+        color: #000;
+        font-weight: 600;
+        font-size: 1.2rem;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .glass-body {
+        padding: 20px;
+        color: #f8f9fa;
+    }
+
+    .glass-list .list-group-item {
+        background-color: transparent;
+        border: none;
+        color: #ddd;
+        font-size: 0.95rem;
+        padding: 0.6rem 1rem;
+    }
+
+    .glass-list .list-group-item span:last-child {
+        font-weight: 600;
+        color: #00ffc3;
+    }
+
+    h2.mb-4 {
+        font-weight: 700;
+        color: #00ffc3;
+    }
+
+    @media (max-width: 768px) {
+        .glass-header {
+            font-size: 1rem;
+        }
+    }
+</style>
+
 <div class="container mt-5 text-white">
-    <h2 class="mb-4">Your Expense Summary</h2>
+    <h2 class="mb-4 text-center">Your Expense Summary</h2>
 
     <div class="row">
         {% for summary in summaries %}
         <div class="col-md-4 mb-4">
-            <div class="card bg-dark shadow-lg text-white h-100">
-                <div class="card-header text-center fs-4">{{ summary.period }}</div>
-                <div class="card-body">
-                    <h5>Total: <strong>${{ summary.total|floatformat:2 }}</strong></h5>
-                    <ul class="list-group list-group-flush mt-3">
+            <div class="glass-card h-100">
+                <div class="glass-header">{{ summary.period }}</div>
+                <div class="glass-body">
+                    <h5 class="mb-3">Total: <strong style="color:#00ffc3;">₪{{ summary.total|floatformat:2 }}</strong></h5>
+                    <ul class="list-group glass-list">
                         {% for item in summary.breakdown %}
-                        <li class="list-group-item bg-transparent text-white d-flex justify-content-between">
+                        <li class="list-group-item d-flex justify-content-between">
                             <span>{{ item.category }}</span>
                             <span>${{ item.total|floatformat:2 }}</span>
                         </li>
                         {% empty %}
-                        <li class="list-group-item bg-transparent text-white">No data</li>
+                        <li class="list-group-item">No data</li>
                         {% endfor %}
                     </ul>
                 </div>
