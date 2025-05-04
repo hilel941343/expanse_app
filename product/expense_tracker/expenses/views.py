@@ -1,4 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
+import cv2
+import numpy as np
 from django.shortcuts import render, redirect
 from .models import Expense
 from .forms import ExpenseForm
@@ -6,11 +8,11 @@ from datetime import date
 from django.db.models import Sum
 from django.utils.timezone import now
 from django.contrib.auth.decorators import login_required
+
+
 def home(request):
     return render(request, 'home.html')
 
-
-# Create your views here.
 
 def register(request):
     if request.method == 'POST':
@@ -21,8 +23,6 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'expenses/register.html', {'form': form})
-
-
 
 
 @login_required
@@ -38,10 +38,12 @@ def add_expense(request):
         form = ExpenseForm()
     return render(request, 'add_expense.html', {'form': form})
 
+
 from django.shortcuts import render
 from django.db.models import Sum
 from datetime import date
 from .models import Expense  # Assuming you're using an Expense model
+
 
 @login_required
 def summary(request):
@@ -90,7 +92,6 @@ def summary(request):
     }
 
     return render(request, 'summary.html', context)
-
 
 
 @login_required
