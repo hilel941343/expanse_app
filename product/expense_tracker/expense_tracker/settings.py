@@ -24,7 +24,8 @@ SECRET_KEY = 'django-insecure-=da%=@&zo=po&dh8+m^bv#pd%-ouonv6t#ae5hmm%+)31x^l12
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'expanse-tracker.onrender.com']
+ALLOWED_HOSTS = ["*"]
+
 
 
 
