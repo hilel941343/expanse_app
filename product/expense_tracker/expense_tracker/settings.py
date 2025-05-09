@@ -137,4 +137,4 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 
-DEBUG = os.getenv('RENDER', '') != 'true'
+
