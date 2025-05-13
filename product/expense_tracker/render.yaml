@@ -3,10 +3,10 @@ services:
     name: expense-app
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn expenses.wsgi:application
+    startCommand: gunicorn expense_tracker.wsgi:application
     envVars:
       - key: DJANGO_SETTINGS_MODULE
-        value: expenses.settings
+        value: expense_tracker.settings
       - key: SECRET_KEY
         generateValue: true
       - key: DEBUG
