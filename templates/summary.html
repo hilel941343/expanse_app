@@ -71,7 +71,7 @@
                         {% for item in summary.breakdown %}
                         <li class="list-group-item d-flex justify-content-between">
                             <span>{{ item.category }}</span>
-                            <span>${{ item.total|floatformat:2 }}</span>
+                            <span>₪{{ item.total|floatformat:2 }}</span>
                         </li>
                         {% empty %}
                         <li class="list-group-item">No data</li>
