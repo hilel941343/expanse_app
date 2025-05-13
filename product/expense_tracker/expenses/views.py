@@ -1,6 +1,4 @@
 from django.contrib.auth.forms import UserCreationForm
-import cv2
-import numpy as np
 from django.shortcuts import render, redirect
 from .models import Expense
 from .forms import ExpenseForm
