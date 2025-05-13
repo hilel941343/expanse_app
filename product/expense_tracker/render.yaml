@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: expense-app
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn expense_app.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: expense_app.settings
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: 'False'
